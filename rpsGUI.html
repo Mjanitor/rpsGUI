@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+</head>
+<body>
+    <h1>Welcome!  Let's play Rock, Paper, Scissors!</h1>
+
+    <h3>Which would you like to pick?</h3>
+
+    <button id="rock" value='ROCK' onclick="playGame('ROCK', computerPlay())">Rock</button>
+    <button id="paper" value='PAPER' onclick="playGame('PAPER', computerPlay())">Paper</button>
+    <button id="scissors" value='SCISSORS' onclick="playGame('SCISSORS', computerPlay())">Scissors</button>
+    <br>
+    <div>
+        <p>
+            Here is the running tally: <br>
+            Player: <span id="player">0</span> win(s)<br>
+            Computer: <span id="computer">0</span> win(s)
+        </p>
+    </div>
+
+  <script>
+    let playerCount = 0;
+    let cpuCount = 0;
+
+    function computerPlay() {
+        let random = Math.floor(Math.random(0, 2) * 3);
+        if (random == 0) {
+            return 'ROCK';
+        } else if (random == 1) {
+            return 'PAPER';
+        }
+        return 'SCISSORS';
+    };
+
+    function playGame(playerSelection, computerSelection) {
+        alert('The computer picked: ' + computerSelection);
+        if (playerSelection == computerSelection) {
+            alert ('Tie!');
+        }
+        else if (playerSelection == 'ROCK' && computerSelection == 'PAPER') {
+            alert ('Computer Wins!');
+            cpuCount++;
+        }
+        else if (playerSelection == 'PAPER' && computerSelection == 'SCISSORS') {
+            alert ('Computer Wins!');
+            cpuCount++;
+        } 
+        else if (playerSelection == 'SCISSORS' && computerSelection == 'ROCK') {
+            alert( 'Computer Wins!');
+            cpuCount++;
+            console.log(cpuCount);
+        }
+        else {
+            alert( 'Player Wins!');
+            playerCount++;
+        }
+        document.getElementById("player").innerHTML = playerCount;
+        document.getElementById("computer").innerHTML = cpuCount;
+
+        if (playerCount >= 5) {
+            let winner = document.createElement('P');
+            winner.innerText = "Player wins!!!";
+            winner.style.fontSize = '100px';
+            document.body.appendChild(winner);
+        }
+        else if (cpuCount >= 5) {
+            let winner = document.createElement('P');
+            winner.innerText = "Computer wins!!!";
+            winner.style.fontSize = '100px';
+            document.body.appendChild(winner);
+        }
+    };
+
+  </script>
+</body>
+</html>
